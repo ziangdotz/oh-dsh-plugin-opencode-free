@@ -1,0 +1,51 @@
+# dsh-plugin-opencode-free
+#
+# One row inserts the plugin; it serves exactly one route, `opencode-free`,
+# backed by a local `opencode serve` process.
+#
+# This file is the bundle's own default. A profile that wants different settings
+# must OVERRIDE this row by id (`- id: OpenCodeFree` with a `config:`, no
+# `insert:`); inserting a second row with the same id makes the plugin
+# inventory unable to decide which one to toggle. `config` is replaced
+# wholesale, so an override restates everything.
+#
+# The plugin starts the server itself when nothing answers on that port, so a
+# fresh install needs no terminal. To start one by hand instead (the fallback):
+#   opencode serve --hostname 127.0.0.1 --port 4399
+# and set local.autoStart: false so the plugin never starts a second one.
+#
+# It requires a password on every request and prints a fresh one on each start,
+# so give it a fixed value through the environment — the server then adopts it,
+# and the plugin reads the same variable (local.passwordEnv defaults to it):
+#   $env:OPENCODE_SERVER_PASSWORD = '<a value you choose>'
+#
+# This transport is text-only: OpenCode runs its own agent and tool loop, so DSH
+# tools (sandbox, approvals, working directory) cannot reach it. The answer does
+# stream, event by event, through the server's own event stream.
+- insert:
+    - id: OpenCodeFree
+      name: dsh-plugin-opencode-free
+      config:
+        routes:
+          opencode-free:
+            displayName: OpenCode Free
+            local:
+              serverURL: http://127.0.0.1:4399
+              providerID: opencode
+              # No password here on purpose: the row reads
+              # OPENCODE_SERVER_PASSWORD from the Host environment, the same
+              # variable that makes the server adopt a fixed value at startup.
+              # Set it in that environment, or put a literal here.
+            # Leave models empty to show whatever the server reports on
+            # GET /api/model. Pin a subset only when a deployment must.
+            # models:
+            #   - id: deepseek-v4.1-flash-free
+            #     name: DeepSeek V4.1 Flash (Free)
+            #     contextWindow: 200000
+            #     maxTokens: 32000
+        catalog:
+          # The server's listing is the catalog; this is the cache window.
+          maxAgeMs: 3600000
+          timeoutMs: 5000
+          # Keep non-free ids too, for a server that serves paid models.
+          includeNonFree: false

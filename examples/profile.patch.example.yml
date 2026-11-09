@@ -1,0 +1,38 @@
+# Copy into ~/.dsh/profiles/<profile>/cordis.patch.yml
+#
+# The bundle already inserted this row, so this file OVERRIDES it by id.
+# Do not use `- insert:` with the same id: two rows would share an id, and the
+# plugin inventory could not tell which one to toggle.
+#
+# `config` is replaced wholesale — restate every field the row needs.
+#
+# The plugin starts `opencode serve` itself when nothing answers on that port.
+# To start it by hand instead, set autoStart: false and run:
+#   $env:OPENCODE_SERVER_PASSWORD = '<the value below>'
+#   opencode serve --hostname 127.0.0.1 --port 4399
+- id: OpenCodeFree
+  name: dsh-plugin-opencode-free
+  config:
+    routes:
+      opencode-free:
+        displayName: OpenCode Free
+        local:
+          serverURL: http://127.0.0.1:4399
+          providerID: opencode
+          # Omit to read OPENCODE_SERVER_PASSWORD from the Host environment.
+          password: <the value you gave the server>
+          # Start the server if nothing answers there yet.
+          autoStart: true
+          # Use an absolute path when the Host's PATH lacks the shim.
+          # serverCommand: C:\Tools\nvm\.nodejs\opencode.exe
+        # models:            # pin a subset only when a deployment must
+        #   - id: deepseek-v4.1-flash-free
+        #     contextWindow: 200000
+        #     maxTokens: 32000
+    catalog:
+      maxAgeMs: 3600000
+      timeoutMs: 5000
+      # Opt in to ids without a `-free` suffix. The default is `false`: this
+      # route serves the free tier, so a paid id is only offered when a
+      # deployment says its server serves one too.
+      includeNonFree: true

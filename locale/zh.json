@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "detail": "README.zh.md",
+    "title": "dsh-plugin-opencode-free",
+    "description": "由本机 `opencode serve` 进程提供 OpenCode 的免费模型：回答逐字流式返回，模型清单就是该服务器实际提供的内容。"
+  }
+}

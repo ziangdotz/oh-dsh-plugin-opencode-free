@@ -1,0 +1,24 @@
+# Build output is tracked on purpose: `main` points at `lib/index.js`, and a
+# `dsh plugin add github:<owner>/<repo>` install copies the repository as-is —
+# this package declares no `prepare` script, so an ignored `lib/` would ship a
+# plugin with no entry point. Rebuild with `npm run build` before committing.
+node_modules/
+.npm-cache/
+*.tsbuildinfo
+*.tgz
+*.log
+.DS_Store
+Thumbs.db
+coverage/
+.env
+.env.*
+!.env.example
+**/.credentials.yaml
+.credentials*
+*.pem
+*.key
+*.crt
+.netrc
+# Scratch captures from ad-hoc verification runs: store snapshots and pasted logs.
+.tmp-*
+.t2.txt

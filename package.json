@@ -1,0 +1,86 @@
+{
+  "name": "dsh-plugin-opencode-free",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Adds the OpenCode Free provider route to DeepSeek Harness. The route is served by a local `opencode serve` process, streams answers from that server, and lists whatever models it offers.",
+  "keywords": [
+    "dsh",
+    "cordis",
+    "cordis-plugin",
+    "llm",
+    "provider",
+    "opencode",
+    "free",
+    "opencode-serve",
+    "local"
+  ],
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "README*.md",
+    "lib/**/*.js",
+    "lib/types/**/*.d.ts",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "docs/**/*.md",
+    "examples/**/*.yml",
+    "tools/compat-check.mjs",
+    "tools/local-smoke.mjs",
+    "tools/server-owner.cs",
+    "tools/server-owner.mjs",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-settings-models"
+      ]
+    }
+  },
+  "engines": {
+    "dsh": ">=0.2.1-rc.3 <0.3.0",
+    "node": ">=22"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.0.5 || ~4.1.0",
+    "@deepseek-ai/dsh-llm": "0.2.1-rc.3 || 0.2.1-rc.5 || 0.2.2-rc.1",
+    "@deepseek-ai/schemastery": "~3.18.5 || ~3.19.0"
+  },
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "test": "node tools/run-tests.mjs",
+    "verify": "npm run check && npm test",
+    "verify:full": "npm run compat && npm run verify",
+    "compat": "node tools/compat-check.mjs",
+    "compat:desktop": "node tools/desktop-check.mjs",
+    "compat:json": "node tools/compat-check.mjs --json",
+    "local-smoke": "node tools/local-smoke.mjs",
+    "local-smoke:self": "node tools/local-smoke.mjs --self-test",
+    "pack:check": "npm pack --dry-run",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3"
+  }
+}
