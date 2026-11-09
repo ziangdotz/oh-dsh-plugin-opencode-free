@@ -2,7 +2,7 @@
 
 为 DSH 提供 OpenCode Free 模型接入的插件。我们在本项目中设计并实现了模型路由、流式响应适配、模型管理界面、服务生命周期管理和资源控制。
 
-[English](README.md) · [文档索引](docs/README.md)
+[English](README.en.md) · [文档索引](docs/README.md)
 
 ## 功能
 

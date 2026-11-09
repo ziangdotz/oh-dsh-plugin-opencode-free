@@ -36,7 +36,7 @@ evidence for a desktop release.
 |---|---|
 | `locale/en.json` with `meta.title` and `meta.description` | title `dsh-plugin-opencode-free`, description names the local server and the streamed answer |
 | the same for the user's language (`locale/zh.json`) | present, same meaning in Chinese |
-| localized detail document on DSH `0.2.2-rc.1` | `meta.detail` selects `README.md` in English and `README.zh.md` in Chinese; both are included in package files |
+| localized detail document on DSH `0.2.2-rc.1` | `README.md` is the default Chinese homepage; `meta.detail` selects `README.en.md` in English and `README.zh.md` in Chinese; all three are included in package files |
 | a recognizable title, not the package name | **deviates on request**: the title is the package name in both locales (see §6) |
 | an original icon, exported as `./icon`, inside the package | `icon.svg` (834 bytes, well under 256 KiB), only the SVG namespace as an external reference |
 | metadata readable without activating the plugin | both files are pure JSON with a single `meta` object |

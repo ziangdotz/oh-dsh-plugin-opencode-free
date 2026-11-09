@@ -1,6 +1,6 @@
 {
   "meta": {
-    "detail": "README.md",
+    "detail": "README.en.md",
     "title": "dsh-plugin-opencode-free",
     "description": "Serves OpenCode's free models from a local `opencode serve` process: the answer streams back, and the model list is whatever that server offers."
   }

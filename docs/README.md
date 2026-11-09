@@ -4,7 +4,7 @@
 
 | 文档 | 内容 |
 | --- | --- |
-| [中文首页](../README.zh.md) / [English](../README.md) | 功能、安装、配置、生命周期及常见问题 |
+| [中文首页](../README.md) / [English](../README.en.md) | 功能、安装、配置、生命周期及常见问题 |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | 模块划分、传输协议和设计决策 |
 | [UI.md](UI.md) | 设置界面、布局与本地化 |
 | [MEMORY-ANALYSIS.md](MEMORY-ANALYSIS.md) | 内存测量方法、实测结果与优化空间 |
